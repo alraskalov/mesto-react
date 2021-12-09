@@ -1,0 +1,14 @@
+.grid-photo__delete-button {
+  display: none;
+  background: url('../../../images/trash.svg');
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  cursor: pointer;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  top: 18px;
+  right: 15px;
+}
+
