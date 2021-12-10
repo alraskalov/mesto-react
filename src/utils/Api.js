@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
   constructor(options) {
     this._url = options.baseUrl;
     this._headers = options.headers;
@@ -8,7 +8,7 @@ export default class Api {
     return fetch(`${this._url}/cards`, {
       method: "GET",
       headers: this._headers,
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   addCard(data) {
@@ -16,21 +16,21 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify(data),
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   getUserInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: this._headers,
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   setUserInfo(userName, userAbout) {
@@ -41,7 +41,7 @@ export default class Api {
         name: userName,
         about: userAbout,
       }),
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   setUserAvatar(userAvatar) {
@@ -51,14 +51,14 @@ export default class Api {
       body: JSON.stringify({
         avatar: userAvatar,
       }),
-    }).then(res => this._getResponse(res));
+    }).then((res) => this._getResponse(res));
   }
 
   changeLikeCard(cardId, isLiked) {
-      return fetch(`${this._url}/cards/likes/${cardId}`, {
-        method: isLiked ? "DELETE" : "PUT",
-        headers: this._headers,
-      }).then(res => this._getResponse(res));
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._headers,
+    }).then((res) => this._getResponse(res));
   }
 
   _getResponse(response) {
@@ -68,3 +68,13 @@ export default class Api {
     return Promise.reject(`Ошибка: ${response.status}`);
   }
 }
+
+const api = new Api({
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-30",
+  headers: {
+    authorization: "314a6403-12f3-42b6-b8d1-07fca9f8b44c",
+    "Content-Type": "application/json",
+  },
+});
+
+export default api;
