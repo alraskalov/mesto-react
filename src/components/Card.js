@@ -4,8 +4,9 @@ function Card(props) {
   }
 
   return (
-    <div onClick={handleClick} className="grid-photo__element">
+    <div className="grid-photo__element">
       <img
+        onClick={handleClick}
         src={props.card.link}
         alt={props.card.name}
         className="grid-photo__image"
