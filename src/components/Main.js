@@ -7,6 +7,7 @@ function Main(props) {
     "Исследователь океана"
   );
   const [userAvatar, setUserAvatar] = React.useState();
+  const [cards, setCards] = React.useState([]);
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -14,6 +15,14 @@ function Main(props) {
         setUserName(userDataResponse.name);
         setUserDescription(userDataResponse.about);
         setUserAvatar(userDataResponse.avatar);
+        api
+          .getInitialCards()
+          .then((data) => {
+            setCards(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
@@ -45,7 +54,27 @@ function Main(props) {
           className="profile__add-button animation-button"
         ></button>
       </section>
-      <section className="grid-photo page__grid-photo"></section>
+      <section className="grid-photo page__grid-photo">
+        {cards.map((card) => (
+          <div key={card._id} className="grid-photo__element">
+            <img src={card.link} alt={card.name} className="grid-photo__image" />
+            <button
+              type="button"
+              className="grid-photo__delete-button animation-button"
+            ></button>
+            <div className="grid-photo__description">
+              <h2 className="grid-photo__title">{card.name}</h2>
+              <div className="like-container">
+                <button
+                  type="button"
+                  className="grid-photo__like animation-like"
+                ></button>
+                <p className="like-counter">{card.likes.length}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
     </main>
   );
 }
