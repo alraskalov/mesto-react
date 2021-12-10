@@ -1,5 +1,6 @@
 import React from "react";
 import api from "../utils/Api";
+import Card from "./Card";
 
 function Main(props) {
   const [userName, setUserName] = React.useState("Жак-Ив Кусто");
@@ -56,23 +57,7 @@ function Main(props) {
       </section>
       <section className="grid-photo page__grid-photo">
         {cards.map((card) => (
-          <div key={card._id} className="grid-photo__element">
-            <img src={card.link} alt={card.name} className="grid-photo__image" />
-            <button
-              type="button"
-              className="grid-photo__delete-button animation-button"
-            ></button>
-            <div className="grid-photo__description">
-              <h2 className="grid-photo__title">{card.name}</h2>
-              <div className="like-container">
-                <button
-                  type="button"
-                  className="grid-photo__like animation-like"
-                ></button>
-                <p className="like-counter">{card.likes.length}</p>
-              </div>
-            </div>
-          </div>
+          <Card key={card._id} card={card} />
         ))}
       </section>
     </main>
