@@ -1,6 +1,10 @@
 function Card(props) {
+  function handleClick() {
+    props.onCardClick(props.card)
+  }
+
   return (
-    <div className="grid-photo__element">
+    <div onClick={handleClick} className="grid-photo__element">
       <img
         src={props.card.link}
         alt={props.card.name}

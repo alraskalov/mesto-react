@@ -57,7 +57,7 @@ function Main(props) {
       </section>
       <section className="grid-photo page__grid-photo">
         {cards.map((card) => (
-          <Card key={card._id} card={card} />
+          <Card onCardClick={props.onCard} key={card._id} card={card} />
         ))}
       </section>
     </main>
