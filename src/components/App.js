@@ -11,7 +11,7 @@ function App() {
       <div className="popup popup-edit">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
-          <form name="edit" className="popup__form form-edit" novalidate>
+          <form name="edit" className="popup__form form-edit" noValidate>
             <fieldset className="popup__fieldset">
               <label className="popup__label">
                 <input
@@ -20,8 +20,8 @@ function App() {
                   type="text"
                   name="userName"
                   placeholder="Ваше имя"
-                  minlength="2"
-                  maxlength="40"
+                  minLength="2"
+                  maxLength="40"
                   required
                 />
                 <span className="popup__input-error user-name-error"></span>
@@ -33,21 +33,19 @@ function App() {
                   type="text"
                   name="userJob"
                   placeholder="Ваша профессия"
-                  minlength="2"
-                  maxlength="200"
+                  minLength="2"
+                  maxLength="200"
                   required
                 />
                 <span className="popup__input-error user-job-error"></span>
               </label>
               <button type="submit" className="popup__submit-btn">
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_initial"
-                  >Сохранить</span
-                >
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_loading"
-                  >Сохранение...</span
-                >
+                <span className="popup__submit-btn-text popup__submit-btn-text_initial">
+                  Сохранить
+                </span>
+                <span className="popup__submit-btn-text popup__submit-btn-text_loading">
+                  Сохранение...
+                </span>
               </button>
             </fieldset>
           </form>
@@ -61,7 +59,7 @@ function App() {
       <div className="popup popup-add">
         <div className="popup__container">
           <h2 className="popup__title">Новое место</h2>
-          <form name="add" className="popup__form form-add" novalidate>
+          <form name="add" className="popup__form form-add" noValidate>
             <fieldset className="popup__fieldset">
               <label className="popup__label">
                 <input
@@ -70,8 +68,8 @@ function App() {
                   type="text"
                   name="name"
                   placeholder="Название"
-                  minlength="2"
-                  maxlength="30"
+                  minLength="2"
+                  maxLength="30"
                   required
                 />
                 <span className="popup__input-error image-name-error"></span>
@@ -88,14 +86,12 @@ function App() {
                 <span className="popup__input-error image-link-error"></span>
               </label>
               <button type="submit" className="popup__submit-btn">
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_initial"
-                  >Сохранить</span
-                >
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_loading"
-                  >Сохранение...</span
-                >
+                <span className="popup__submit-btn-text popup__submit-btn-text_initial">
+                  Сохранить
+                </span>
+                <span className="popup__submit-btn-text popup__submit-btn-text_loading">
+                  Сохранение...
+                </span>
               </button>
             </fieldset>
           </form>
@@ -109,16 +105,14 @@ function App() {
       <div className="popup popup-delete">
         <div className="popup__container">
           <h2 className="popup__title">Вы уверены?</h2>
-          <form name="delete" className="popup__form form-delete" novalidate>
+          <form name="delete" className="popup__form form-delete" noValidate>
             <button type="submit" className="popup__submit-btn delete-button">
-              <span
-                className="popup__submit-btn-text popup__submit-btn-text_initial"
-                >Да</span
-              >
-              <span
-                className="popup__submit-btn-text popup__submit-btn-text_loading"
-                >Удаление...</span
-              >
+              <span className="popup__submit-btn-text popup__submit-btn-text_initial">
+                Да
+              </span>
+              <span className="popup__submit-btn-text popup__submit-btn-text_loading">
+                Удаление...
+              </span>
             </button>
           </form>
           <button
@@ -131,7 +125,7 @@ function App() {
       <div className="popup popup-avatar">
         <div className="popup__container">
           <h2 className="popup__title">Обновить аватар</h2>
-          <form name="avatar" className="popup__form form-avatar" novalidate>
+          <form name="avatar" className="popup__form form-avatar" noValidate>
             <fieldset className="popup__fieldset">
               <label className="popup__label">
                 <input
@@ -145,14 +139,12 @@ function App() {
                 <span className="popup__input-error avatar-link-error"></span>
               </label>
               <button type="submit" className="popup__submit-btn">
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_initial"
-                  >Сохранить</span
-                >
-                <span
-                  className="popup__submit-btn-text popup__submit-btn-text_loading"
-                  >Сохранение...</span
-                >
+                <span className="popup__submit-btn-text popup__submit-btn-text_initial">
+                  Сохранить
+                </span>
+                <span className="popup__submit-btn-text popup__submit-btn-text_loading">
+                  Сохранение...
+                </span>
               </button>
             </fieldset>
           </form>
