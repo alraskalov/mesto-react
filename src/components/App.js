@@ -1,15 +1,41 @@
+import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
 
 function App() {
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
+    React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
+    React.useState(false);
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(true);
+  }
   return (
     <div className="page">
       <Header />
-      <Main />
+      <Main
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}
+        onEditAvatar={handleEditAvatarClick}
+      />
       <Footer />
-      <PopupWithForm name="edit" title="Редактировать профиль">
+      <PopupWithForm
+        name="edit"
+        title="Редактировать профиль"
+        isOpen={isEditProfilePopupOpen}
+      >
         <label className="popup__label">
           <input
             className="popup__input"
@@ -45,7 +71,11 @@ function App() {
           </span>
         </button>
       </PopupWithForm>
-      <PopupWithForm name="add" title="Новое место">
+      <PopupWithForm
+        name="add"
+        title="Новое место"
+        isOpen={isAddPlacePopupOpen}
+      >
         <label className="popup__label">
           <input
             className="popup__input"
@@ -79,7 +109,11 @@ function App() {
           </span>
         </button>
       </PopupWithForm>
-      <PopupWithForm name="delete" title="Вы уверены?">
+      <PopupWithForm
+        name="delete"
+        title="Вы уверены?"
+        isOpen={isEditAvatarPopupOpen}
+      >
         <button type="submit" className="popup__submit-btn delete-button">
           <span className="popup__submit-btn-text popup__submit-btn-text_initial">
             Да
