@@ -1,47 +1,13 @@
-import logo from './images/logo.svg';
+import Footer from "./Footer";
+import Header from "./Header";
+import Main from "./Main";
 
 function App() {
   return (
     <div className="page">
-      <header className="header page__header">
-        <img
-          className="header__logo"
-          src={logo}
-          alt="Логотип Место"
-        />
-      </header>
-      <main className="content">
-        <section className="profile page__profile">
-          <div className="profile__info">
-            <div className="avatar-container">
-              <img
-                src="<%=require('./images/avatar.jpg')%>"
-                alt="Аватар"
-                className="profile__avatar"
-              />
-              <button className="profile__avatar-edit"></button>
-            </div>
-
-            <div className="profile__user">
-              <h1 className="profile__title"></h1>
-              <p className="profile__subtitle"></p>
-              <button
-                className="profile__edit-button animation-button"
-                type="button"
-              ></button>
-            </div>
-          </div>
-          <button
-            type="button"
-            className="profile__add-button animation-button"
-          ></button>
-        </section>
-        <section className="grid-photo page__grid-photo"></section>
-      </main>
-      <footer className="footer page__footer">
-        <p className="footer__copyright">&copy; 2021 Mesto Russia</p>
-      </footer>
-
+      <Header />
+      <Main />
+      <Footer />
       <div className="popup popup-edit">
         <div className="popup__container">
           <h2 className="popup__title">Редактировать профиль</h2>
