@@ -49,6 +49,7 @@ function App() {
       <PopupWithForm
         name="edit"
         title="Редактировать профиль"
+        buttonText="Сохранить"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
       >
@@ -78,18 +79,11 @@ function App() {
           />
           <span className="popup__input-error user-job-error"></span>
         </label>
-        <button type="submit" className="popup__submit-btn">
-          <span className="popup__submit-btn-text popup__submit-btn-text_initial">
-            Сохранить
-          </span>
-          <span className="popup__submit-btn-text popup__submit-btn-text_loading">
-            Сохранение...
-          </span>
-        </button>
       </PopupWithForm>
       <PopupWithForm
         name="add"
         title="Новое место"
+        buttonText="Сохранить"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
       >
@@ -117,28 +111,17 @@ function App() {
           />
           <span className="popup__input-error image-link-error"></span>
         </label>
-        <button type="submit" className="popup__submit-btn">
-          <span className="popup__submit-btn-text popup__submit-btn-text_initial">
-            Сохранить
-          </span>
-          <span className="popup__submit-btn-text popup__submit-btn-text_loading">
-            Сохранение...
-          </span>
-        </button>
       </PopupWithForm>
-      <PopupWithForm name="delete" title="Вы уверены?" onClose={closeAllPopups}>
-        <button type="submit" className="popup__submit-btn delete-button">
-          <span className="popup__submit-btn-text popup__submit-btn-text_initial">
-            Да
-          </span>
-          <span className="popup__submit-btn-text popup__submit-btn-text_loading">
-            Удаление...
-          </span>
-        </button>
-      </PopupWithForm>
+      <PopupWithForm
+      name="delete"
+      title="Вы уверены?"
+      buttonText="Да"
+      onClose={closeAllPopups}
+      />
       <PopupWithForm
         name="avatar"
         title="Обновить аватар"
+        buttonText="Сохранить"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
       >
@@ -153,14 +136,6 @@ function App() {
           />
           <span className="popup__input-error avatar-link-error"></span>
         </label>
-        <button type="submit" className="popup__submit-btn">
-          <span className="popup__submit-btn-text popup__submit-btn-text_initial">
-            Сохранить
-          </span>
-          <span className="popup__submit-btn-text popup__submit-btn-text_loading">
-            Сохранение...
-          </span>
-        </button>
       </PopupWithForm>
       <ImagePopup card={selectedCard} onClose={closeAllPopups} />
     </div>
