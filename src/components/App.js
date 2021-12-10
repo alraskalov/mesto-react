@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -22,6 +23,13 @@ function App() {
   function handleAddPlaceClick() {
     setIsAddPlacePopupOpen(true);
   }
+
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+  }
+
   return (
     <div className="page">
       <Header />
@@ -35,6 +43,7 @@ function App() {
         name="edit"
         title="Редактировать профиль"
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       >
         <label className="popup__label">
           <input
@@ -75,6 +84,7 @@ function App() {
         name="add"
         title="Новое место"
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       >
         <label className="popup__label">
           <input
@@ -109,11 +119,7 @@ function App() {
           </span>
         </button>
       </PopupWithForm>
-      <PopupWithForm
-        name="delete"
-        title="Вы уверены?"
-        isOpen={isEditAvatarPopupOpen}
-      >
+      <PopupWithForm name="delete" title="Вы уверены?" onClose={closeAllPopups}>
         <button type="submit" className="popup__submit-btn delete-button">
           <span className="popup__submit-btn-text popup__submit-btn-text_initial">
             Да
@@ -123,7 +129,12 @@ function App() {
           </span>
         </button>
       </PopupWithForm>
-      <PopupWithForm name="avatar" title="Обновить аватар">
+      <PopupWithForm
+        name="avatar"
+        title="Обновить аватар"
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
+      >
         <label className="popup__label">
           <input
             className="popup__input popup__input-avatar"
@@ -144,6 +155,7 @@ function App() {
           </span>
         </button>
       </PopupWithForm>
+      <ImagePopup />
     </div>
   );
 }

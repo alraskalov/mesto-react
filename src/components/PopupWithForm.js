@@ -15,6 +15,7 @@ function PopupWithForm(props) {
           <fieldset className="popup__fieldset">{props.children}</fieldset>
         </form>
         <button
+          onClick={props.onClose}
           type="button"
           className="popup__close-btn animation-button"
         ></button>
