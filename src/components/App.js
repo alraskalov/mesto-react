@@ -25,8 +25,8 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
-  function handleCardClick(e) {
-    setSelectedCard(e);
+  function handleCardClick(card) {
+    setSelectedCard(card);
   }
 
   function closeAllPopups() {
