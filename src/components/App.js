@@ -5,6 +5,7 @@ import Main from "./Main";
 import api from "../utils/Api";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
+import EditProfilePopup from "./EditProfilePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
@@ -29,6 +30,18 @@ function App() {
         console.log(err);
       });
   }, []);
+
+  function handleUpdateUser({ name, about }) {
+    api
+      .setUserInfo(name, about)
+      .then((userData) => {
+        setCurrentUser(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    closeAllPopups();
+  }
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -64,40 +77,11 @@ function App() {
           onCard={handleCardClick}
         />
         <Footer />
-        <PopupWithForm
-          name="edit"
-          title="Редактировать профиль"
-          buttonText="Сохранить"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <label className="popup__label">
-            <input
-              className="popup__input"
-              id="user-name"
-              type="text"
-              name="userName"
-              placeholder="Ваше имя"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="popup__input-error user-name-error"></span>
-          </label>
-          <label className="popup__label">
-            <input
-              className="popup__input"
-              id="user-job"
-              type="text"
-              name="userJob"
-              placeholder="Ваша профессия"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="popup__input-error user-job-error"></span>
-          </label>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        />
         <PopupWithForm
           name="add"
           title="Новое место"
