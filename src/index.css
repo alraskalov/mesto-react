@@ -34,6 +34,8 @@
 @import url('./blocks/like-container/like-container.css');
 @import url('./blocks/grid-photo/__like/_active/grid-photo__like_active.css');
 @import url('./blocks/grid-photo/__delete-button/grid-photo__delete-button.css');
+@import url('./blocks/grid-photo/__delete-button/_visible/grid-photo__delete-button_visible.css');
+@import url('./blocks/grid-photo/__delete-button/_hidden/grid-photo__delete-button_hidden.css');
 
 @import url('./blocks/footer/footer.css');
 @import url('./blocks/footer/__copyright/footer__copyright.css');
