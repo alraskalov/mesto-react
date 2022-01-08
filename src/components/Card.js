@@ -19,11 +19,12 @@ function Card(props) {
   }
 
   function handleLikeClick() {
-    props.onCardLike(props.card)
+    props.onCardLike(props.card);
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card)
+    props.onCardDelete(props.card._id);
+    props.onDeleteCard();
   }
 
   return (

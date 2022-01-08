@@ -3,11 +3,11 @@ import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
 import api from "../utils/Api";
-import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import DeletePlacePopup from "./DeletePlacePopup";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
@@ -16,14 +16,15 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+  const [isDeletePlacePopup, setIsDeletePlacePopup] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({
     name: "",
     link: "",
   });
+  const [cardId, setSelectedCardId] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [cards, setCards] = React.useState([]);
-
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -32,7 +33,6 @@ function App() {
         api
           .getInitialCards()
           .then((data) => {
-            console.log(data);
             setCards(data);
           })
           .catch((err) => {
@@ -59,15 +59,16 @@ function App() {
       });
   }
 
-  function handleCardDelete(card) {
+  function handleCardDelete(cardId) {
     api
-      .deleteCard(card._id)
+      .deleteCard(cardId)
       .then(() => {
-        setCards((state) => state.filter((c) => c._id !== card._id));
+        setCards((state) => state.filter((c) => c._id !== cardId));
       })
       .catch((err) => {
         console.log(err);
       });
+    closeAllPopups();
   }
 
   function handleUpdateUser({ name, about }) {
@@ -124,11 +125,21 @@ function App() {
     setSelectedCard(card);
   }
 
+  function handleCardDeleteIconClick(cardId) {
+    setSelectedCardId(cardId);
+  }
+
+  function handleDeletePlaceClick() {
+    setIsDeletePlacePopup(true);
+  }
+
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setIsAddPlacePopupOpen(false);
+    setIsDeletePlacePopup(false);
     setSelectedCard({ name: "", link: "" });
+    setSelectedCardId("");
   }
 
   return (
@@ -139,10 +150,11 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
+          onDeleteCard={handleDeletePlaceClick}
           onCard={handleCardClick}
           cards={cards}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDelete}
+          onCardDelete={handleCardDeleteIconClick}
         />
         <Footer />
         <EditProfilePopup
@@ -151,11 +163,11 @@ function App() {
           onUpdateUser={handleUpdateUser}
         />
 
-        <PopupWithForm
-          name="delete"
-          title="Вы уверены?"
-          buttonText="Да"
+        <DeletePlacePopup
+          isOpen={isDeletePlacePopup}
           onClose={closeAllPopups}
+          onDeletePlace={handleCardDelete}
+          cardId={cardId}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
