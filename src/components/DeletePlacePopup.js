@@ -16,6 +16,7 @@ export default function DeletePlacePopup(props) {
       onSubmit={handleSubmit}
       isOpen={props.isOpen}
       onClose={props.onClose}
+      isLoading={props.isLoading}
     />
   );
 }

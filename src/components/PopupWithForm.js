@@ -11,7 +11,7 @@ function PopupWithForm(props) {
           <fieldset className="popup__fieldset">
             {props.children}
             <button type="submit" className="popup__submit-btn">
-              {props.buttonText}
+              {`${props.isLoading ? "Сохранение..." : props.buttonText}`}
             </button>
           </fieldset>
         </form>

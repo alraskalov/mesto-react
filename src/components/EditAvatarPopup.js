@@ -11,7 +11,7 @@ export default function EditAvatarPopup(props) {
     props.onUpdateAvatar({
       avatar: inputAvatarElement.value,
     });
-    inputAvatarElement.value = "";
+    e.target.reset();
   }
 
   return (
@@ -22,6 +22,7 @@ export default function EditAvatarPopup(props) {
       isOpen={props.isOpen}
       onClose={props.onClose}
       onSubmit={handleSubmit}
+      isLoading={props.isLoading}
     >
       <label className="popup__label">
         <input

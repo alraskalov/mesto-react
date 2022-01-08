@@ -25,6 +25,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [cards, setCards] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
   React.useEffect(() => {
     api
       .getUserInfo()
@@ -46,7 +47,6 @@ function App() {
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
-
     api
       .changeLikeCard(card._id, isLiked)
       .then((newCard) => {
@@ -60,53 +60,60 @@ function App() {
   }
 
   function handleCardDelete(cardId) {
+    setIsLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== cardId));
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
-      });
-    closeAllPopups();
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateUser({ name, about }) {
+    setIsLoading(true);
     api
       .setUserInfo(name, about)
       .then((userData) => {
         setCurrentUser(userData);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
-      });
-    closeAllPopups();
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateAvatar({ avatar }) {
+    setIsLoading(true);
     api
       .setUserAvatar(avatar)
       .then((userAvatar) => {
         setCurrentUser(userAvatar);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
-      });
-
-    closeAllPopups();
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleAddPlaceSubmit({ name, link }) {
+    setIsLoading(true);
+
     api
       .addCard(name, link)
       .then((newCard) => {
         setCards([newCard, ...cards]);
+        closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
-      });
-
-    closeAllPopups();
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleEditProfileClick() {
@@ -161,23 +168,26 @@ function App() {
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
+          isLoading={isLoading}
         />
-
         <DeletePlacePopup
           isOpen={isDeletePlacePopup}
           onClose={closeAllPopups}
           onDeletePlace={handleCardDelete}
           cardId={cardId}
+          isLoading={isLoading}
         />
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           onClose={closeAllPopups}
           onAddPlace={handleAddPlaceSubmit}
+          isLoading={isLoading}
         />
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
         />
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
