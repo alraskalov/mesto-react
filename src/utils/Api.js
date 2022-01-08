@@ -11,11 +11,11 @@ class Api {
     }).then((res) => this._getResponse(res));
   }
 
-  addCard(data) {
+  addCard(name, link) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify(data),
+      body: JSON.stringify({name, link}),
     }).then((res) => this._getResponse(res));
   }
 
