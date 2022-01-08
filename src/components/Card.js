@@ -23,7 +23,7 @@ function Card(props) {
   }
 
   function handleDeleteClick() {
-    props.onCardDelete(props.card._id);
+    props.onCardDeleteClick(props.card._id);
     props.onDeleteCard();
   }
 

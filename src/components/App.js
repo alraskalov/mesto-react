@@ -154,7 +154,7 @@ function App() {
           onCard={handleCardClick}
           cards={cards}
           onCardLike={handleCardLike}
-          onCardDelete={handleCardDeleteIconClick}
+          onCardDeleteClick={handleCardDeleteIconClick}
         />
         <Footer />
         <EditProfilePopup
