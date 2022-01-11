@@ -37,7 +37,6 @@ function Main(props) {
       <section className="grid-photo page__grid-photo">
         {props.cards.map((card) => (
           <Card
-            onDeleteCard={props.onDeleteCard}
             onCardClick={props.onCard}
             onCardLike={props.onCardLike}
             onCardDeleteClick={props.onCardDeleteClick}

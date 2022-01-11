@@ -8,10 +8,16 @@ export default function EditAvatarPopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onUpdateAvatar({
-      avatar: inputAvatarElement.value,
-    });
-    e.target.reset();
+    props.onUpdateAvatar(
+      {
+        avatar: inputAvatarElement.value,
+      },
+      () => {
+        return Promise.resolve().then(() => {
+          e.target.reset();
+        });
+      }
+    );
   }
 
   return (

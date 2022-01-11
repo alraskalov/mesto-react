@@ -21,7 +21,7 @@ function App() {
     name: "",
     link: "",
   });
-  const [cardId, setSelectedCardId] = React.useState("");
+  const [cardIdForRemove, setСardIdForRemove] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
 
   const [cards, setCards] = React.useState([]);
@@ -87,13 +87,14 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleUpdateAvatar({ avatar }) {
+  function handleUpdateAvatar({ avatar }, callbackPromise) {
     setIsLoading(true);
     api
       .setUserAvatar(avatar)
       .then((userAvatar) => {
         setCurrentUser(userAvatar);
         closeAllPopups();
+        callbackPromise();
       })
       .catch((err) => {
         console.log(err);
@@ -101,7 +102,7 @@ function App() {
       .finally(() => setIsLoading(false));
   }
 
-  function handleAddPlaceSubmit({ name, link }) {
+  function handleAddPlaceSubmit({ name, link }, callbackPromise) {
     setIsLoading(true);
 
     api
@@ -109,6 +110,7 @@ function App() {
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
+        callbackPromise();
       })
       .catch((err) => {
         console.log(err);
@@ -132,11 +134,8 @@ function App() {
     setSelectedCard(card);
   }
 
-  function handleCardDeleteIconClick(cardId) {
-    setSelectedCardId(cardId);
-  }
-
-  function handleDeletePlaceClick() {
+  function handleDeleteCard(cardId) {
+    setСardIdForRemove(cardId);
     setIsDeletePlacePopup(true);
   }
 
@@ -146,7 +145,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsDeletePlacePopup(false);
     setSelectedCard({ name: "", link: "" });
-    setSelectedCardId("");
+    setСardIdForRemove("");
   }
 
   return (
@@ -157,11 +156,10 @@ function App() {
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
-          onDeleteCard={handleDeletePlaceClick}
           onCard={handleCardClick}
           cards={cards}
           onCardLike={handleCardLike}
-          onCardDeleteClick={handleCardDeleteIconClick}
+          onCardDeleteClick={handleDeleteCard}
         />
         <Footer />
         <EditProfilePopup
@@ -174,7 +172,7 @@ function App() {
           isOpen={isDeletePlacePopup}
           onClose={closeAllPopups}
           onDeletePlace={handleCardDelete}
-          cardId={cardId}
+          cardId={cardIdForRemove}
           isLoading={isLoading}
         />
         <AddPlacePopup

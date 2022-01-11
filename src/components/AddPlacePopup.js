@@ -16,12 +16,18 @@ export default function AddPlacePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.onAddPlace({
-      name: cardName,
-      link: cardImageLink,
-    });
-    setCardName("")
-    setCardImageLink("")
+    props.onAddPlace(
+      {
+        name: cardName,
+        link: cardImageLink,
+      },
+      () => {
+        return Promise.resolve().then(() => {
+          setCardName("");
+          setCardImageLink("");
+        });
+      }
+    );
   }
 
   return (

@@ -24,7 +24,6 @@ function Card(props) {
 
   function handleDeleteClick() {
     props.onCardDeleteClick(props.card._id);
-    props.onDeleteCard();
   }
 
   return (
